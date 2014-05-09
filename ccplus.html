@@ -1,164 +1,275 @@
 <!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>
+      "Corporate Communication Plus" article Visualized
+    </title>
 
-<meta charset="utf-8">
-<title>"Corporate Communication Plus" article Visualized</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8">
+    </script>
+    <script src="http://cpettitt.github.io/project/dagre-d3/latest/dagre-d3.js">
+    </script>
 
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="http://cpettitt.github.io/project/dagre-d3/latest/dagre-d3.js"></script>
+    <style>
+      svg {
+        border: 1px solid black;
+        overflow: hidden;
+      }
 
-<style>
-svg {
-  border: 1px solid black;
-  overflow: hidden;
-}
+      text {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+        font-size: 10px;
+      }
 
-text {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
-  font-size: 10px;
-}
+      .node rect {
+        stroke-width: 2px;
+        stroke: #333;
+        fill: #fff;
+      }
 
-.node rect {
-  stroke-width: 2px;
-  stroke: #333;
-  fill: #fff;
-}
+      #node-Sisi rect {
+        fill: #f77;
+      }
 
-#node-Sisi rect {
-  fill: #f77;
-}
+      #node-Amr-Hamzawy rect {
+        fill: #f77;
+      }
 
-#node-Amr-Hamzawy rect {
-  fill: #f77;
-}
+      #node-Amr-Mousa rect {
+        fill: #f77;
+      }
 
-#node-Amr-Mousa rect {
-  fill: #f77;
-}
+      #node-Lamya-Kamel rect {
+        fill: #f77;
+      }
 
-#node-Lamya-Kamel rect {
-  fill: #f77;
-}
+      #node-Ahmed-Kamel rect {
+        fill: #f77;
+      }
 
-#node-Ahmed-Kamel rect {
-  fill: #f77;
-}
+      #node-Yara-Khalaf rect {
+        fill: #f77;
+      }
 
-#node-Yara-Khalaf rect {
-  fill: #f77;
-}
+      #node-AUC rect {
+        fill: #7f7;
+      }
 
-#node-AUC rect {
-  fill: #7f7;
-}
+      #node-ESLSCA rect {
+        fill: #7f7;
+      }
 
-#node-ESLSCA rect {
-  fill: #7f7;
-}
+      #node-Misr-University rect {
+        fill: #7f7;
+      }
 
-#node-Misr-University rect {
-  fill: #7f7;
-}
+      #node-Ain-Shams-University rect {
+        fill: #7f7;
+      }
 
-#node-Ain-Shams-University rect {
-  fill: #7f7;
-}
+      #node-Corporate-Communication-Plus rect {
+        fill: #ffa500;
+      }
 
-#node-Corporate-Communication-Plus rect {
-  fill: #ffa500;
-}
+      #node-Orbit-Showtime rect {
+        fill: #ffa500;
+      }
 
-#node-Orbit-Showtime rect {
-  fill: #ffa500;
-}
+      #node-Vodafone rect {
+        fill: #ffa500;
+      }
 
-#node-Vodafone rect {
-  fill: #ffa500;
-}
+      #node-Petronas rect {
+        fill: #ffa500;
+      }
 
-#node-Petronas rect {
-  fill: #ffa500;
-}
+      #node-Qasr-Ainy rect {
+        fill: #1a1aec;
+      }
 
-#node-Qasr-Ainy rect {
-  fill: #1a1aec;
-}
+      #node-Sharm-Elsheikh-Hospital rect {
+        fill: #1a1aec;
+      }
 
-#node-Sharm-Elsheikh-Hospital rect {
-  fill: #1a1aec;
-}
+      #node-Rescue-Frontier rect {
+        fill: #ec1a1a;
+      }
 
-#node-Rescue-Frontier rect {
-  fill: #ec1a1a;
-}
+      .edgeLabel rect {
+        fill: #fff;
+      }
 
-.edgeLabel rect {
-  fill: #fff;
-}
+      .edgePath path {
+        stroke: #333;
+        stroke-width: 1.5px;
+        fill: none;
+      }
 
-.edgePath path {
-  stroke: #333;
-  stroke-width: 1.5px;
-  fill: none;
-}
-</style>
+      table
+      {
+        width: 200px;
+        background: #fff;
+        border: 1px solid #000;
+        padding: 5px 15px;
+      }
 
-<body onLoad="draw();">
-<h3>An attempt at visualizing this <a href="http://yanair.net/archives/31534" target="_blank">Article</a>.</h3>
+      dt, dd
+      {
+        display: inline;
+      }
 
-<svg width=1130 height=330><g transform="translate(20,20)"/></svg>
+      .person {
+        background-color: #f77;
+        display: block;
+        width: 50px;
+        height: 20px;
+        border: 1px thin #000;
+      }
+
+      .business {
+        background-color: #FFA500;
+        display: block;
+        width: 50px;
+        height: 20px;
+        border: 1px thin #000;
+      }
+
+      .university {
+        background-color: #7f7;
+        display: block;
+        width: 50px;
+        height: 20px;
+        border: 1px thin #000;
+      }
+
+      .hospital {
+        background-color: #1a1aec;
+        display: block;
+        width: 50px;
+        height: 20px;
+        border: 1px thin #000;
+      }
+    </style>
+  </head>
+  <body onLoad="draw();">
+    <h2>
+      An attempt at visualizing this
+      <a href="http://yanair.net/archives/31534" target="_blank">Article</a>.
+    </h2>
+
+    <svg width=1130 height=330>
+      <g transform="translate(20,20)"/>
+    </svg>
+
+    <h3>
+      Graph Legend :
+    </h3>
+    <table>
+      <tr>
+        <td>
+          <span class='person'>
+          </span>
+        </td>
+        <td>
+          - person
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class='business'>
+          </span>
+        </td>
+        <td>
+          - business
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class='university'>
+          </span>
+        </td>
+        <td>
+          - university
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class='hospital'>
+          </span>
+        </td>
+        <td>
+          - hospital
+        </td>
+      </tr>
+    </table>
+
+    <p>
+      This page is using
+      <a href="http://d3js.org/" target="_blank">
+        D3js
+      </a>
+      and
+      <a href="https://github.com/cpettitt/dagre-d3" target="_blank">
+        dagre-d3
+      </a>
+      plugin.
+    </p>
+    <script>
+      function draw() {
+        // States and transitions from RFC 793
+        var g = new dagreD3.Digraph();
+        var entities = [ "Sisi", "Amr-Mousa", "Amr-Hamzawy", "Lamya-Kamel",
+                        "Yara-Khalaf", "Ahmed-Kamel", "Corporate-Communication-Plus", "AUC",
+                        "Ain-Shams-University", "Orbit-Showtime", "Sharm-Elsheikh-Hospital",
+                        "Qasr-Ainy", "Rescue-Frontier", "Misr-University", "Vodafone",
+                        "Petronas", "ESLSCA" ];
+
+        entities.forEach(function(state) {
+          g.addNode(state, {
+            label: state }
+                   );
+        }
+                        );
+
+        g.addEdge(null, "Amr-Mousa",     "Corporate-Communication-Plus");
+        g.addEdge(null, "Sisi",     "Corporate-Communication-Plus");
+        g.addEdge(null, "Amr-Hamzawy",     "Corporate-Communication-Plus");
+        g.addEdge(null, "Corporate-Communication-Plus",     "Rescue-Frontier");
+        g.addEdge(null, "Lamya-Kamel",     "Corporate-Communication-Plus");
+        g.addEdge(null, "Ahmed-Kamel",     "Corporate-Communication-Plus");
+        g.addEdge(null, "Yara-Khalaf",     "Corporate-Communication-Plus");
+        g.addEdge(null, "Ahmed-Kamel",     "Sisi");
+        g.addEdge(null, "Ahmed-Kamel",     "Sharm-Elsheikh-Hospital");
+        g.addEdge(null, "Ahmed-Kamel",     "Qasr-Ainy");
+        g.addEdge(null, "Ahmed-Kamel",     "Lamya-Kamel");
+        g.addEdge(null, "Lamya-Kamel",     "Ahmed-Kamel");
+        g.addEdge(null, "Lamya-Kamel",     "Corporate-Communication-Plus");
+        g.addEdge(null, "Lamya-Kamel",     "AUC");
+        g.addEdge(null, "Lamya-Kamel",     "Misr-University");
+        g.addEdge(null, "Lamya-Kamel",     "Vodafone");
+        g.addEdge(null, "Lamya-Kamel",     "Petronas");
+        g.addEdge(null, "Yara-Khalaf",     "Orbit-Showtime");
+        g.addEdge(null, "Yara-Khalaf",     "Ain-Shams-University");
+        g.addEdge(null, "Yara-Khalaf",     "ESLSCA");
 
 
-<p>
-    This page is using
-    <a href="http://d3js.org/" target="_blank">D3js</a>
-    and <a href="https://github.com/cpettitt/dagre-d3" target="_blank">dagre-d3</a> plugin.
-</p>
-<script>
-function draw() {
-  // States and transitions from RFC 793
-  var g = new dagreD3.Digraph();
-  var entities = [ "Sisi", "Amr-Mousa", "Amr-Hamzawy", "Lamya-Kamel",
-                 "Yara-Khalaf", "Ahmed-Kamel", "Corporate-Communication-Plus", "AUC",
-                 "Ain-Shams-University", "Orbit-Showtime", "Sharm-Elsheikh-Hospital",
-                 "Qasr-Ainy", "Rescue-Frontier", "Misr-University", "Vodafone",
-                 "Petronas", "ESLSCA" ];
 
-  entities.forEach(function(state) { g.addNode(state, { label: state }); });
+        var renderer = new dagreD3.Renderer();
+        var oldDrawNodes = renderer.drawNodes();
+        renderer.drawNodes(function(graph, root) {
+          var svgNodes = oldDrawNodes(graph, root);
+          svgNodes.attr("id", function(u) {
+            return "node-" + u;
+          }
+                       );
+          return svgNodes;
+        }
+                          );
 
-  g.addEdge(null, "Amr-Mousa",     "Corporate-Communication-Plus");
-  g.addEdge(null, "Sisi",     "Corporate-Communication-Plus");
-  g.addEdge(null, "Amr-Hamzawy",     "Corporate-Communication-Plus");
-  g.addEdge(null, "Corporate-Communication-Plus",     "Rescue-Frontier");
-  g.addEdge(null, "Lamya-Kamel",     "Corporate-Communication-Plus");
-  g.addEdge(null, "Ahmed-Kamel",     "Corporate-Communication-Plus");
-  g.addEdge(null, "Yara-Khalaf",     "Corporate-Communication-Plus");
-  g.addEdge(null, "Ahmed-Kamel",     "Sisi");
-  g.addEdge(null, "Ahmed-Kamel",     "Sharm-Elsheikh-Hospital");
-  g.addEdge(null, "Ahmed-Kamel",     "Qasr-Ainy");
-  g.addEdge(null, "Ahmed-Kamel",     "Lamya-Kamel");
-  g.addEdge(null, "Lamya-Kamel",     "Ahmed-Kamel");
-  g.addEdge(null, "Lamya-Kamel",     "Corporate-Communication-Plus");
-  g.addEdge(null, "Lamya-Kamel",     "AUC");
-  g.addEdge(null, "Lamya-Kamel",     "Misr-University");
-  g.addEdge(null, "Lamya-Kamel",     "Vodafone");
-  g.addEdge(null, "Lamya-Kamel",     "Petronas");
-  g.addEdge(null, "Yara-Khalaf",     "Orbit-Showtime");
-  g.addEdge(null, "Yara-Khalaf",     "Ain-Shams-University");
-  g.addEdge(null, "Yara-Khalaf",     "ESLSCA");
+        renderer.run(g, d3.select("svg g"));
+      }
+    </script>
 
-
-
-  var renderer = new dagreD3.Renderer();
-  var oldDrawNodes = renderer.drawNodes();
-  renderer.drawNodes(function(graph, root) {
-    var svgNodes = oldDrawNodes(graph, root);
-    svgNodes.attr("id", function(u) { return "node-" + u; });
-    return svgNodes;
-  });
-
-  renderer.run(g, d3.select("svg g"));
-}
-</script>
-
-</body>
+  </body>
 </html>
